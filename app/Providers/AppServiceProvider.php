@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\News;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Mengirim $draftCount hanya ke file sidebar
+        View::composer('components.sidebar', function ($view) {
+            $view->with('draftCount', News::whereNull('published_at')->count());
+        });
     }
 }

@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use HasFactory; // Tambahkan baris ini di dalam class
+    use HasFactory;
 
-    protected $fillable = ['title', 'content', 'author', 'image', 'category', 'sub_category'];
+    protected $fillable = ['title', 'content', 'author', 'image', 'category_id', 'published_at'];
 
-    // Relasi: Satu berita punya banyak komentar
+    // Relasi ke kategori (Sub-Kategori)
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

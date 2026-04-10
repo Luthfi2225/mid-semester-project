@@ -21,6 +21,7 @@ class CommentFactory extends Factory
             'comment' => fake()->text(50),
             'user_id' => \App\Models\User::all()->random()->id,
             'news_id' => \App\Models\News::all()->random()->id,
+            'is_approved' => fake()->boolean(65)
         ];
     }
 }

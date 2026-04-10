@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,17 +15,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class
+        ]);
 
-        \App\Models\News::factory(20)->create();
+        \App\Models\User::factory()->create([
+            'name' => 'Luthfi Ferdinan Muslih',
+            'email' => 'luthfiferd@gmail.com',
+            'role' => 'admin',
+            'password' => '123456',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'M Malwan Angkasa',
+            'email' => 'malwanangkasa@gmail.com',
+            'role' => 'admin',
+            'password' => '123456',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Mohammad Hiqmal Ariffansyah',
+            'email' => 'arrifansyahmhiqmal@gmail.com',
+            'role' => 'admin',
+            'password' => '123456',
+        ]);
+
+        \App\Models\User::factory(20)->create();
+
+        \App\Models\News::factory(50)->create();
 
         \App\Models\Comment::factory(50)->create();
 
         \App\Models\Bookmark::factory(30)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
     }
 }

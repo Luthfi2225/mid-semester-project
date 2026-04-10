@@ -2,28 +2,26 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\News;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends Factory<Model>
- */
 class NewsFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = News::class;
+
     public function definition(): array
     {
         return [
             'title' => fake()->sentence(),
-            'content' => fake()->paragraphs(3, true),
+            'content' => fake()->paragraphs(5, true),
             'author' => fake()->name(),
-            'image' => 'https://picsum.photos/640/480', // Gambar dummy
-            'category' => fake()->randomElement(['Nasional', 'International']),
-            'sub_category' => fake()->randomElement(['Tech', 'Sports', 'Health', 'Politics']),
+            'image' => 'https://picsum.photos/seed/'.fake()->word().'/640/480',
+
+            // HANYA ambil ID yang punya parent_id (Artinya ini adalah Sub-Kategori)
+            'category_id' => Category::whereNotNull('parent_id')->inRandomOrder()->first()->id,
+
+            'published_at' => fake()->optional(0.8)->dateTimeBetween('-20 year', 'now'),
         ];
     }
 }
