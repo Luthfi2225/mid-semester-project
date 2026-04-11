@@ -30,11 +30,6 @@
             <div class="flex items-center justify-center min-h-screen w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
                 <main class="flex max-w-83.75 w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                     <div class="text-[13px] leading-5 flex-1 p-15 bg-white dark:bg-[#161615] dark:text-white shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-                        @if (session('status'))
-                            <div class="mb-4 p-3 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">
-                                {{ session('status') }}
-                            </div>
-                        @endif
                         @include('auth.login')
                         @include('auth.register')
                     </div>
